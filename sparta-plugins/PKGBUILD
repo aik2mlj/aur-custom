@@ -1,0 +1,25 @@
+# Maintainer: Robert Pannick <rwpannick@gmail.com>
+# Contributor: Mads Kjeldgaard <mail@madskjeldgaard.dk>
+pkgname=sparta-plugins
+pkgver=2024_02_02_v1.7.1
+pkgrel=1
+pkgdesc='AALTO vst plugins for Spatial Audio Real-time Applications'
+arch=('x86_64' 'x86_64_v3')
+url="http://research.spa.aalto.fi/projects/sparta_vsts/"
+license=('GPL')
+groups=('pro-audio')
+depends=('bubblewrap' 'webkit2gtk')
+_target_d="Linux_SPARTA_LV2_$pkgver"
+source=("https://github.com/leomccormack/SPARTA/releases/download/v1.7.1/$_target_d.zip")
+sha256sums=('3198a443d66f5076c36d9928dad471149b2ec827c75dbee9d5c5da14a47ca302')
+
+package() {
+	cd $_target_d
+
+	# Custom mkl and ipp lib needed for the installation
+	install -Dm755 "libsaf_mkl_custom_lp64.so" "$pkgdir/usr/lib/libsaf_mkl_custom_lp64.so"
+	# install -Dm755 "libsaf_ipp_custom.so" "$pkgdir/usr/lib/libsaf_ipp_custom.so"
+
+    mkdir -p "${pkgdir}/usr/lib/lv2/"
+    find . -name '*.lv2' -type d -exec cp -ar {} "${pkgdir}/usr/lib/lv2/" \;
+}

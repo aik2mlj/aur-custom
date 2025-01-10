@@ -1,0 +1,15 @@
+pkgbase = sparta-plugins
+	pkgdesc = AALTO vst plugins for Spatial Audio Real-time Applications
+	pkgver = 2024_02_02_v1.7.1
+	pkgrel = 1
+	url = http://research.spa.aalto.fi/projects/sparta_vsts/
+	arch = x86_64
+	arch = x86_64_v3
+	groups = pro-audio
+	license = GPL
+	depends = bubblewrap
+	depends = webkit2gtk
+	source = https://github.com/leomccormack/SPARTA/releases/download/v1.7.1/Linux_SPARTA_LV2_2024_02_02_v1.7.1.zip
+	sha256sums = 3198a443d66f5076c36d9928dad471149b2ec827c75dbee9d5c5da14a47ca302
+
+pkgname = sparta-plugins
