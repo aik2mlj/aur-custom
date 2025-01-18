@@ -1,4 +1,48 @@
+# Ignore all files by default
+*
+!*/
+
+# Allow essential files for PKGBUILD
+!.gitignore
+!PKGBUILD
+!.SRCINFO
+!*.patch
+!*.diff
+!*.install
+!LICENSE
+!README*
+!CHANGELOG*
+!*.desktop
+!*.service
+
+# Allow specific source files or assets needed for the package
+!assets/
+!scripts/
+
+# Ignore temporary files and build artifacts
+*.tar.*
 *.zip
-*.pkg.tar.*
+*.gz
+*.bz2
+*.xz
+*.zst
+*.7z
+*.iso
+*.img
+*.o
+*.so
+*.a
+*.out
+*.bin
+
+# Ignore backup and swap files
+*~
+*.swp
+*.swo
+*.bak
+*.old
+
+# Ignore build directories
 pkg/
 src/
+*.log
