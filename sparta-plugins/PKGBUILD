@@ -2,16 +2,16 @@
 # Contributor: Mads Kjeldgaard <mail@madskjeldgaard.dk>
 pkgname=sparta-plugins
 pkgver=2024_02_02_v1.7.1
-pkgrel=1
+pkgrel=2
 pkgdesc='AALTO vst plugins for Spatial Audio Real-time Applications'
 arch=('x86_64' 'x86_64_v3')
 url="http://research.spa.aalto.fi/projects/sparta_vsts/"
 license=('GPL')
 groups=('pro-audio')
 depends=('bubblewrap' 'webkit2gtk')
-_target_d="Linux_SPARTA_LV2_$pkgver"
+_target_d="Linux_SPARTA_VST_$pkgver"
 source=("https://github.com/leomccormack/SPARTA/releases/download/v1.7.1/$_target_d.zip")
-sha256sums=('3198a443d66f5076c36d9928dad471149b2ec827c75dbee9d5c5da14a47ca302')
+sha256sums=('679fef0db44c88a72636fd660f3aec64d206ec128bc6568a74bca3cfb2a01e25')
 
 package() {
 	cd $_target_d
@@ -20,6 +20,7 @@ package() {
 	install -Dm755 "libsaf_mkl_custom_lp64.so" "$pkgdir/usr/lib/libsaf_mkl_custom_lp64.so"
 	# install -Dm755 "libsaf_ipp_custom.so" "$pkgdir/usr/lib/libsaf_ipp_custom.so"
 
-    mkdir -p "${pkgdir}/usr/lib/lv2/"
-    find . -name '*.lv2' -type d -exec cp -ar {} "${pkgdir}/usr/lib/lv2/" \;
+    mkdir -p "${pkgdir}/usr/lib/vst/"
+    find . -name '*.so' -exec cp -ar {} "${pkgdir}/usr/lib/vst/" \;
+    rm "${pkgdir}/usr/lib/vst/libsaf_mkl_custom_lp64.so"
 }
