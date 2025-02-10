@@ -1,7 +1,7 @@
 pkgbase = zaread-git
 	pkgdesc = A (very) lightweight ebook and Office document reader
 	pkgver = r120.c2d45e1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/paoloap/zaread
 	arch = any
 	license = GPL-3.0-or-later
@@ -14,6 +14,8 @@ pkgbase = zaread-git
 	provides = zaread
 	conflicts = zaread
 	source = git+https://github.com/paoloap/zaread.git
+	source = zaread.desktop
 	sha256sums = SKIP
+	sha256sums = fe8669d761824fd7fb64b91af7757a0d42b75d9cc54ffe717509beae15d01fd6
 
 pkgname = zaread-git

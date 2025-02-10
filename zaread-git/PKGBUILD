@@ -4,7 +4,7 @@
 pkgname=zaread-git
 _pkgname="${pkgname%-git}"
 pkgver=r120.c2d45e1
-pkgrel=1
+pkgrel=2
 pkgdesc='A (very) lightweight ebook and Office document reader'
 arch=(any)
 url='https://github.com/paoloap/zaread'
@@ -18,8 +18,10 @@ optdepends=(
 makedepends=(git)
 provides=(zaread)
 conflicts=(zaread)
-source=('git+https://github.com/paoloap/zaread.git')
-sha256sums=('SKIP')
+source=('git+https://github.com/paoloap/zaread.git'
+    "${_pkgname}.desktop")
+sha256sums=('SKIP'
+    'fe8669d761824fd7fb64b91af7757a0d42b75d9cc54ffe717509beae15d01fd6')
 
 pkgver() {
     cd "${srcdir}/${_pkgname}"
@@ -28,6 +30,8 @@ pkgver() {
 }
 
 package() {
+    install -Dm644 "${_pkgname}.desktop" "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
+
     cd "${srcdir}/${_pkgname}"
 
     mkdir -p "${pkgdir}/usr/bin"
@@ -35,5 +39,4 @@ package() {
     install -Dm755 "${srcdir}/${_pkgname}/${_pkgname}" "${pkgdir}/usr/bin/"
     install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${_pkgname}/"
     install -Dm644 README.md -t "${pkgdir}/usr/share/doc/${_pkgname}/"
-    install -Dm644 "${_pkgname}.desktop" "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
 }
